@@ -26,6 +26,7 @@
 #include "Utils.hpp"
 
 #include <apps/openmw-mp/Script/Script.hpp>
+#include <mono/metadata/assembly.h>
 
 #ifdef ENABLE_BREAKPAD
 #include <handler/exception_handler.h>
@@ -234,6 +235,7 @@ int main(int argc, char *argv[])
 #endif
 
 #endif
+    mono_set_dirs(Utils::convertPath(plugin_home + "/mono").c_str(), Utils::convertPath(plugin_home + "/mono/etc").c_str());
 
     int code;
 

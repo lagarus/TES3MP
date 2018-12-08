@@ -2,6 +2,7 @@
 // Created by koncord on 19.03.16.
 //
 
+#include <apps/openmw-mp/Script/LangMono/LangMono.hpp>
 #include "Script.hpp"
 #include "LangNative/LangNative.hpp"
 
@@ -23,6 +24,12 @@ Script::Script(const char *path)
 
     fclose(file);
 
+    if (strstr(path, ".dll"))
+    {
+        script_type = SCRIPT_MONO;
+        lang = new LangMono();
+    }
+    /*else
 #ifdef _WIN32
     if (strstr(path, ".dll"))
 #else
@@ -31,7 +38,7 @@ Script::Script(const char *path)
     {
         script_type = SCRIPT_CPP;
         lang = new LangNative();
-    }
+    }*/
 #if defined (ENABLE_LUA)
     else if (strstr(path, ".lua") || strstr(path, ".t"))
     {
