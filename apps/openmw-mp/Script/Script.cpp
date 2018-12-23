@@ -17,6 +17,7 @@ using namespace std;
 
 Script::ScriptList Script::scripts;
 std::string Script::moddir;
+bool Script::debugMode = false;
 
 inline bool Load(Language *lang, const std::string &path)
 {
@@ -132,4 +133,36 @@ void Script::SetModDir(const std::string &moddir)
 const char* Script::GetModDir()
 {
     return moddir.c_str();
+}
+
+bool Script::IsDebugMode()
+{
+    return debugMode;
+}
+
+void Script::EnableDebugMode()
+{
+    debugMode = true;
+}
+
+void Script::Init()
+{
+#ifdef ENABLE_MONO
+    LangMono::Init();
+#endif
+#ifdef ENABLE_LUA
+    LangLua::Init();
+#endif
+    LangNative::Init();
+}
+
+void Script::Free()
+{
+#ifdef ENABLE_MONO
+    LangMono::Free();
+#endif
+#ifdef ENABLE_LUA
+    LangLua::Free();
+#endif
+    LangNative::Free();
 }

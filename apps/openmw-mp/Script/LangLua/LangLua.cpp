@@ -292,3 +292,13 @@ void LangLua::AddPackageCPath(const std::string& path)
 {
     packageCPath.emplace(path);
 }
+
+void LangLua::Init()
+{
+
+}
+
+void LangLua::Free()
+{
+
+}

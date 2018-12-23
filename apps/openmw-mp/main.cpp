@@ -134,6 +134,7 @@ boost::program_options::variables_map launchOptions(int argc, char *argv[], File
 
     desc.add_options()
             ("resources", bpo::value<Files::EscapeHashString>()->default_value("resources"), "set resources directory")
+            ("debug", bpo::value<bool>()->implicit_value(true)->default_value(false), "Enable debug mode for scripts (if supported)")
             ("no-logs", bpo::value<bool>()->implicit_value(true)->default_value(false),
              "Do not write logs. Useful for daemonizing.");
 
@@ -264,6 +265,9 @@ int main(int argc, char *argv[])
 
     try
     {
+        if (variables["debug"].as<bool>())
+            Script::EnableDebugMode();
+        Script::Init();
         for (auto plugin : plugins)
             Script::LoadScript(plugin.c_str(), plugin_home.c_str());
 
@@ -331,6 +335,7 @@ int main(int argc, char *argv[])
         code = networking.mainLoop();
 
         networking.getMasterClient()->Stop();
+        Script::Free();
     }
     catch (std::exception &e)
     {

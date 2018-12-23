@@ -57,9 +57,14 @@ private:
 
 protected:
     static std::string moddir;
+    static bool debugMode;
 public:
     ~Script();
 
+    static void Init();
+    static void Free();
+    static bool IsDebugMode();
+    static void EnableDebugMode();
     static void LoadScript(const char *script, const char* base);
     static void LoadScripts(char* scripts, const char* base);
     static void UnloadScripts();

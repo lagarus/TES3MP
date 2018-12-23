@@ -48,6 +48,9 @@ public:
 private:
     static std::set<std::string> packageCPath;
     static std::set<std::string> packagePath;
+
+    static void Init();
+    static void Free();
 };
 
 
