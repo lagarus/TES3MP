@@ -3,6 +3,8 @@
 
 #include "../Types.hpp"
 
+#include <Script/Platform.hpp>
+
 #define CELLAPI \
     {"GetCellStateChangesSize", CellFunctions::GetCellStateChangesSize},\
     \
@@ -31,7 +33,7 @@ namespace CellFunctions
     * \param pid The player ID whose cell state changes should be used.
     * \return The number of indexes.
     */
-    extern "C" unsigned int GetCellStateChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned CDECL int GetCellStateChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Get the cell state type at a certain index in a player's latest cell state changes.
@@ -40,7 +42,7 @@ namespace CellFunctions
     * \param index The index of the cell state.
     * \return The cell state type (0 for LOAD, 1 for UNLOAD).
     */
-    extern "C" unsigned int GetCellStateType(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION unsigned CDECL int GetCellStateType(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the cell description at a certain index in a player's latest cell state changes.
@@ -49,7 +51,7 @@ namespace CellFunctions
     * \param index The index of the cell state.
     * \return The cell description.
     */
-    extern "C" const char *GetCellStateDescription(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const CDECL char *GetCellStateDescription(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the cell description of a player's cell.
@@ -57,7 +59,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The cell description.
     */
-    extern "C" const char *GetCell(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const CDECL char *GetCell(unsigned short pid) noexcept;
 
     /**
     * \brief Get the X coordinate of the player's exterior cell.
@@ -65,7 +67,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The X coordinate of the cell.
     */
-    extern "C" int GetExteriorX(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION int CDECL GetExteriorX(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Y coordinate of the player's exterior cell.
@@ -73,7 +75,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The Y coordinate of the cell.
     */
-    extern "C" int GetExteriorY(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION int CDECL GetExteriorY(unsigned short pid) noexcept;
 
     /**
     * \brief Check whether the player is in an exterior cell or not.
@@ -81,7 +83,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return Whether the player is in an exterior cell.
     */
-    extern "C" bool IsInExterior(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION bool CDECL IsInExterior(unsigned short pid) noexcept;
 
     /**
     * \brief Get the region of the player's exterior cell.
@@ -91,7 +93,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The region.
     */
-    extern "C" const char *GetRegion(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const CDECL char *GetRegion(unsigned short pid) noexcept;
 
     /**
     * \brief Check whether the player's last cell change has involved a region change.
@@ -99,7 +101,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return Whether the player has changed their region.
     */
-    extern "C" bool IsChangingRegion(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION bool CDECL IsChangingRegion(unsigned short pid) noexcept;
 
     /**
     * \brief Set the cell of a player.
@@ -114,7 +116,7 @@ namespace CellFunctions
     * \param cellDescription The cell description.
     * \return void
     */
-    extern "C" void SetCell(unsigned short pid, const char *cellDescription) noexcept;
+    EXPORT_APIFUNCTION void CDECL SetCell(unsigned short pid, const char *cellDescription) noexcept;
 
     /**
     * \brief Set the cell of a player to an exterior cell.
@@ -127,7 +129,7 @@ namespace CellFunctions
     * \param y The Y coordinate of the cell.
     * \return void
     */
-    extern "C" void SetExteriorCell(unsigned short pid, int x, int y) noexcept;
+    EXPORT_APIFUNCTION void CDECL SetExteriorCell(unsigned short pid, int x, int y) noexcept;
 
     /**
     * \brief Send a PlayerCellChange packet about a player.
@@ -137,7 +139,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return void
     */
-    extern "C" void SendCell(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION void CDECL SendCell(unsigned short pid) noexcept;
 }
 
 #endif //OPENMW_CELLAPI_HPP

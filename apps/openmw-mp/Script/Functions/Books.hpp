@@ -1,6 +1,8 @@
 #ifndef OPENMW_BOOKAPI_HPP
 #define OPENMW_BOOKAPI_HPP
 
+#include <Script/Platform.hpp>
+
 #define BOOKAPI \
     {"ClearBookChanges",       BookFunctions::ClearBookChanges},\
     \
@@ -25,7 +27,7 @@ namespace BookFunctions
     * \param pid The player ID whose book changes should be used.
     * \return void
     */
-    extern "C" void ClearBookChanges(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION void CDECL ClearBookChanges(unsigned short pid) noexcept;
 
     /**
     * \brief Get the number of indexes in a player's latest book changes.
@@ -33,7 +35,7 @@ namespace BookFunctions
     * \param pid The player ID whose book changes should be used.
     * \return The number of indexes.
     */
-    extern "C" unsigned int GetBookChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned CDECL int GetBookChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Add a new book to the book changes for a player.
@@ -42,7 +44,7 @@ namespace BookFunctions
     * \param bookId The bookId of the book.
     * \return void
     */
-    extern "C" void AddBook(unsigned short pid, const char* bookId) noexcept;
+    EXPORT_APIFUNCTION void CDECL AddBook(unsigned short pid, const char* bookId) noexcept;
 
     /**
     * \brief Get the bookId at a certain index in a player's latest book changes.
@@ -51,7 +53,7 @@ namespace BookFunctions
     * \param index The index of the book.
     * \return The bookId.
     */
-    extern "C" const char *GetBookId(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const CDECL char *GetBookId(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Send a PlayerBook packet with a player's recorded book changes.
@@ -63,11 +65,11 @@ namespace BookFunctions
     *                           to the packet (false by default).
     * \return void
     */
-    extern "C" void SendBookChanges(unsigned short pid, bool sendToOtherPlayers, bool skipAttachedPlayer) noexcept;
+    EXPORT_APIFUNCTION void CDECL SendBookChanges(unsigned short pid, bool sendToOtherPlayers, bool skipAttachedPlayer) noexcept;
 
     // All methods below are deprecated versions of methods from above
 
-    extern "C" void InitializeBookChanges(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION void CDECL InitializeBookChanges(unsigned short pid) noexcept;
 }
 
 #endif //OPENMW_BOOKAPI_HPP
