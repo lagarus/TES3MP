@@ -36,7 +36,7 @@ option(BUILD_WITH_MONO "Enable Mono languages" ON)
 if(BUILD_WITH_MONO)
     message(STATUS "Mono enabled")
     find_package(Mono REQUIRED)
-    include_directories(${MONO_INCLUDE_DIR})
+    include_directories(SYSTEM ${MONO_INCLUDE_DIR})
 
     set(MonoScript_Sources
             Script/LangMono/LangMono.cpp
