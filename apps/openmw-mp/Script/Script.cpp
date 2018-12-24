@@ -19,7 +19,7 @@ Script::ScriptList Script::scripts;
 std::string Script::moddir;
 bool Script::debugMode = false;
 
-inline bool Load(Language *lang, const std::string &path)
+inline void Load(Language *lang, const std::string &path)
 {
     try
     {

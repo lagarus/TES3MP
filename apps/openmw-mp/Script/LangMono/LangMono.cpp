@@ -63,7 +63,8 @@ boost::any LangMono::ObjectToAny(MonoObject *obj)
         case MONO_TYPE_ARRAY:
         case MONO_TYPE_SZARRAY:
         {
-            MonoArrayType *arrayType = mono_type_get_array_type(rawType);
+            //MonoArrayType *arrayType = mono_type_get_array_type(rawType);
+            break;
         }
         default:
             return boost::any();

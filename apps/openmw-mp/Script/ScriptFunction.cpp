@@ -81,7 +81,7 @@ boost::any ScriptFunction::Call(const vector<boost::any> &args)
         std::vector<void *> argList;
         argList.resize(args.size());
 
-        for (int index = 0; index < args.size(); index++)
+        for (size_t index = 0; index < args.size(); index++)
         {
             switch (def[index])
             {
