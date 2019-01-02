@@ -127,14 +127,14 @@ namespace RecordsDynamicFunctions
     * \return The type of records (0 for SPELL, 1 for POTION, 2 for ENCHANTMENT,
     *         3 for NPC).
     */
-    EXPORT_APIFUNCTION unsigned CDECL short GetRecordType() noexcept;
+    EXPORT_APIFUNCTION unsigned short CDECL GetRecordType() noexcept;
 
     /**
     * \brief Get the number of records in the read worldstate's dynamic records.
     *
     * \return The number of records.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetRecordCount() noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetRecordCount() noexcept;
 
     /**
     * \brief Get the number of effects for the record at a certain index in the read
@@ -143,7 +143,7 @@ namespace RecordsDynamicFunctions
     * \param recordIndex The index of the record.
     * \return The number of effects.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetRecordEffectCount(unsigned int recordIndex) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetRecordEffectCount(unsigned int recordIndex) noexcept;
 
     /**
     * \brief Get the id of the record at a certain index in the read worldstate's
@@ -152,7 +152,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The id of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordId(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordId(unsigned int index) noexcept;
 
     /**
     * \brief Get the base id (i.e. the id this record should inherit default
@@ -162,7 +162,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The base id of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordBaseId(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordBaseId(unsigned int index) noexcept;
 
     /**
     * \brief Get the subtype of the record at a certain index in the read worldstate's
@@ -180,7 +180,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The name of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordName(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordName(unsigned int index) noexcept;
 
     /**
     * \brief Get the model of the record at a certain index in the read worldstate's
@@ -189,7 +189,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The model of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordModel(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordModel(unsigned int index) noexcept;
 
     /**
     * \brief Get the icon of the record at a certain index in the read worldstate's
@@ -198,7 +198,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The icon of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordIcon(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordIcon(unsigned int index) noexcept;
 
     /**
     * \brief Get the script of the record at a certain index in the read worldstate's
@@ -207,7 +207,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The script of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordScript(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordScript(unsigned int index) noexcept;
 
     /**
     * \brief Get the enchantment id of the record at a certain index in the read
@@ -216,7 +216,7 @@ namespace RecordsDynamicFunctions
     * \param index The index of the record.
     * \return The enchantment id of the record.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRecordEnchantmentId(unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRecordEnchantmentId(unsigned int index) noexcept;
 
     /**
     * \brief Get the enchantment charge of the record at a certain index in
@@ -289,7 +289,7 @@ namespace RecordsDynamicFunctions
     * \param effectIndex The index of the effect.
     * \return The ID of the effect.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetRecordEffectId(unsigned int recordIndex, unsigned int effectIndex) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetRecordEffectId(unsigned int recordIndex, unsigned int effectIndex) noexcept;
 
     /**
     * \brief Get the ID of the attribute modified by the effect at a certain index in the
@@ -319,7 +319,7 @@ namespace RecordsDynamicFunctions
     * \param effectIndex The index of the effect.
     * \return The range of the effect.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetRecordEffectRangeType(unsigned int recordIndex, unsigned int effectIndex) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetRecordEffectRangeType(unsigned int recordIndex, unsigned int effectIndex) noexcept;
 
     /**
     * \brief Get the area of the effect at a certain index in the read worldstate's current

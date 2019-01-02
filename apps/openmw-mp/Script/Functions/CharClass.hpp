@@ -38,7 +38,7 @@ namespace CharClassFunctions
     * \param pid The player ID.
     * \return The ID of the default class.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetDefaultClass(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetDefaultClass(unsigned short pid) noexcept;
 
     /**
     * \brief Get the name of the custom class used by a player.
@@ -46,7 +46,7 @@ namespace CharClassFunctions
     * \param pid The player ID.
     * \return The name of the custom class.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetClassName(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetClassName(unsigned short pid) noexcept;
 
     /**
     * \brief Get the description of the custom class used by a player.
@@ -54,7 +54,7 @@ namespace CharClassFunctions
     * \param pid The player ID.
     * \return The description of the custom class.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetClassDesc(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetClassDesc(unsigned short pid) noexcept;
 
     /**
     * \brief Get the ID of one of the two major attributes of a custom class used by a player.

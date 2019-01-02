@@ -70,7 +70,7 @@ namespace ItemFunctions
     * \param pid The player ID whose inventory changes should be used.
     * \return The number of indexes.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetInventoryChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetInventoryChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Get the action type used in a player's latest inventory changes.
@@ -78,7 +78,7 @@ namespace ItemFunctions
     * \param pid The player ID whose inventory changes should be used.
     * \return The action type (0 for SET, 1 for ADD, 2 for REMOVE).
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetInventoryChangesAction(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetInventoryChangesAction(unsigned short pid) noexcept;
 
     /**
     * \brief Set the action type in a player's inventory changes.
@@ -142,7 +142,7 @@ namespace ItemFunctions
     * \param slot The slot of the equipment item.
     * \return The refId.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetEquipmentItemRefId(unsigned short pid, unsigned short slot) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetEquipmentItemRefId(unsigned short pid, unsigned short slot) noexcept;
 
     /**
     * \brief Get the count of the item in a certain slot of the equipment of a player.
@@ -180,7 +180,7 @@ namespace ItemFunctions
     * \param index The index of the inventory item.
     * \return The refId.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetInventoryItemRefId(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetInventoryItemRefId(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the count of the item at a certain index in a player's latest inventory
@@ -220,7 +220,7 @@ namespace ItemFunctions
     * \param index The index of the inventory item.
     * \return The soul.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetInventoryItemSoul(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetInventoryItemSoul(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the refId of the item last used by a player.
@@ -228,7 +228,7 @@ namespace ItemFunctions
     * \param pid The player ID.
     * \return The refId.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetUsedItemRefId(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetUsedItemRefId(unsigned short pid) noexcept;
 
     /**
     * \brief Get the count of the item last used by a player.
@@ -260,7 +260,7 @@ namespace ItemFunctions
     * \param pid The player ID.
     * \return The soul.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetUsedItemSoul(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetUsedItemSoul(unsigned short pid) noexcept;
 
     /**
     * \brief Send a PlayerEquipment packet with a player's equipment.

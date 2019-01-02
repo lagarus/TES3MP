@@ -33,7 +33,7 @@ namespace CellFunctions
     * \param pid The player ID whose cell state changes should be used.
     * \return The number of indexes.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetCellStateChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetCellStateChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Get the cell state type at a certain index in a player's latest cell state changes.
@@ -42,7 +42,7 @@ namespace CellFunctions
     * \param index The index of the cell state.
     * \return The cell state type (0 for LOAD, 1 for UNLOAD).
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetCellStateType(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetCellStateType(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the cell description at a certain index in a player's latest cell state changes.
@@ -51,7 +51,7 @@ namespace CellFunctions
     * \param index The index of the cell state.
     * \return The cell description.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetCellStateDescription(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetCellStateDescription(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the cell description of a player's cell.
@@ -59,7 +59,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The cell description.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetCell(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetCell(unsigned short pid) noexcept;
 
     /**
     * \brief Get the X coordinate of the player's exterior cell.
@@ -93,7 +93,7 @@ namespace CellFunctions
     * \param pid The player ID.
     * \return The region.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetRegion(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetRegion(unsigned short pid) noexcept;
 
     /**
     * \brief Check whether the player's last cell change has involved a region change.

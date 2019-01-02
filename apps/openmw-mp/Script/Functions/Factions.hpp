@@ -44,7 +44,7 @@ namespace FactionFunctions
     * \param pid The player ID whose faction changes should be used.
     * \return The number of indexes.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetFactionChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetFactionChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Get the action type used in a player's latest faction changes.
@@ -52,7 +52,7 @@ namespace FactionFunctions
     * \param pid The player ID whose faction changes should be used.
     * \return The action type (0 for RANK, 1 for EXPULSION, 2 for REPUTATION).
     */
-    EXPORT_APIFUNCTION unsigned CDECL char GetFactionChangesAction(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned char CDECL GetFactionChangesAction(unsigned short pid) noexcept;
 
     /**
     * \brief Get the factionId at a certain index in a player's latest faction changes.
@@ -61,7 +61,7 @@ namespace FactionFunctions
     * \param index The index of the faction.
     * \return The factionId.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetFactionId(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetFactionId(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Get the rank at a certain index in a player's latest faction changes.

@@ -35,7 +35,7 @@ namespace BookFunctions
     * \param pid The player ID whose book changes should be used.
     * \return The number of indexes.
     */
-    EXPORT_APIFUNCTION unsigned CDECL int GetBookChangesSize(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION unsigned int CDECL GetBookChangesSize(unsigned short pid) noexcept;
 
     /**
     * \brief Add a new book to the book changes for a player.
@@ -53,7 +53,7 @@ namespace BookFunctions
     * \param index The index of the book.
     * \return The bookId.
     */
-    EXPORT_APIFUNCTION const CDECL char *GetBookId(unsigned short pid, unsigned int index) noexcept;
+    EXPORT_APIFUNCTION const char *CDECL GetBookId(unsigned short pid, unsigned int index) noexcept;
 
     /**
     * \brief Send a PlayerBook packet with a player's recorded book changes.
