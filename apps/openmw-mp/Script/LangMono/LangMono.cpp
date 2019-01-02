@@ -345,7 +345,10 @@ void LangMono::LoadProgram(const char *filename)
 int LangMono::FreeProgram()
 {
     for(auto &&method : methodsCache)
-        mono_free_method(method.second);
+    {
+        if(method.second != nullptr)
+            mono_free_method(method.second);
+    }
 
     return 0;
 }
