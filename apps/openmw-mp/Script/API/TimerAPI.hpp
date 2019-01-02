@@ -40,9 +40,9 @@ namespace mwmp
         void Restart(int msec);
     private:
         double startTime, targetMsec;
-        std::string publ, arg_types;
+        //std::string publ, arg_types;
         std::vector<boost::any> args;
-        Script *scr;
+        //Script *scr;
         bool end;
     };
 
@@ -55,7 +55,7 @@ namespace mwmp
 #if defined(ENABLE_MONO)
         static int CreateTimerMono(MonoObject *callback, long msec, const std::string& def, std::vector<boost::any> args);
 #endif
-        static int CreateTimer(ScriptFunc callback, long msec, const std::string& def, std::vector<boost::any> args);
+        static int CreateTimer(ScriptFunc callback, long msec, const std::string& def, const std::vector<boost::any> &args);
         static void FreeTimer(int timerid);
         static void ResetTimer(int timerid, long msec);
         static void StartTimer(int timerid);

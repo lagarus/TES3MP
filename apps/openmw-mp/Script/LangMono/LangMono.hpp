@@ -8,6 +8,25 @@
 #include <Script/SystemInterface.hpp>
 #include <unordered_map>
 #include <mono/metadata/object.h>
+#include <boost/variant.hpp>
+
+
+typedef boost::variant<unsigned int, signed int, unsigned long long, signed long long, double, void*> TMonoArgVariant;
+typedef std::vector<TMonoArgVariant> TMonoArgsStore;
+
+template<typename T>
+void *MonoStoreAndGetPtr(TMonoArgsStore &argsStore, va_list &vargs, size_t index)
+{
+    argsStore[index] = va_arg(vargs, T);
+    return (void *) &boost::get<T&>(argsStore[index]);
+}
+
+template<typename T>
+void *MonoStoreAndGetPtr(TMonoArgsStore &argsStore, const std::vector<boost::any> &args, size_t index)
+{
+    argsStore[index] = boost::any_cast<T>(args.at(index));
+    return (void *) &boost::get<T&>(argsStore[index]);
+}
 
 struct MethodKey
 {
@@ -16,10 +35,8 @@ struct MethodKey
         return other.paramsCnt == paramsCnt && other.name == name;
     }
 
-    MethodKey(const std::string &name, int paramsCnt)
+    MethodKey(const std::string &name, int paramsCnt): name(name), paramsCnt(paramsCnt)
     {
-        this->name = name;
-        this->paramsCnt = paramsCnt;
     }
 
     std::string name;

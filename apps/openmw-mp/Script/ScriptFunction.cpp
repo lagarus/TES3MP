@@ -78,8 +78,8 @@ boost::any ScriptFunction::Call(const vector<boost::any> &args)
 #if defined (ENABLE_MONO)
     else if (script_type == SCRIPT_MONO)
     {
-        std::vector<void *> argList;
-        argList.resize(args.size());
+        std::vector<void *> argList(args.size());
+        TMonoArgsStore argsStore(args.size());
 
         for (size_t index = 0; index < args.size(); index++)
         {
@@ -87,38 +87,32 @@ boost::any ScriptFunction::Call(const vector<boost::any> &args)
             {
                 case 'i':
                 {
-                    auto val = boost::any_cast<unsigned int>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<unsigned int>(argsStore, args, index);
                     break;
                 }
                 case 'q':
                 {
-                    auto val = boost::any_cast<signed int>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<signed int>(argsStore, args, index);
                     break;
                 }
                 case 'l':
                 {
-                    auto val = boost::any_cast<unsigned long long>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<unsigned long long>(argsStore, args, index);
                     break;
                 }
                 case 'w':
                 {
-                    auto val = boost::any_cast<signed long long>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<signed long long>(argsStore, args, index);
                     break;
                 }
                 case 'f':
                 {
-                    auto val = boost::any_cast<double>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<double>(argsStore, args, index);
                     break;
                 }
                 case 'p':
                 {
-                    auto val = boost::any_cast<void *>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<void *>(argsStore, args, index);
                     break;
                 }
                 case 's':
@@ -133,8 +127,7 @@ boost::any ScriptFunction::Call(const vector<boost::any> &args)
                 }
                 case 'b':
                 {
-                    auto val = boost::any_cast<int>(args.at(index));
-                    argList[index] = ((void *) &val);
+                    argList[index] = MonoStoreAndGetPtr<int>(argsStore, args, index);
                     break;
                 }
 

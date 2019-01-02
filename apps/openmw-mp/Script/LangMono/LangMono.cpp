@@ -191,7 +191,7 @@ MonoObject *LangMono::AnyToObject(boost::any any, char ret_type)
         }
 
         default:
-            throw std::runtime_error("Mono call: Unknown argument identifier " + ret_type);
+            throw std::runtime_error(std::string("Mono call: Unknown argument identifier ") + ret_type);
     }
     return object;
 }
@@ -366,6 +366,7 @@ boost::any LangMono::Call(const char *name, const char *argl, int buf, ...)
     int n_args = (int) (strlen(argl));
 
     std::vector<void *> vec(n_args);
+    TMonoArgsStore argsStore(n_args);
 
     for (int index = 0; index < n_args; index++)
     {
@@ -373,38 +374,32 @@ boost::any LangMono::Call(const char *name, const char *argl, int buf, ...)
         {
             case 'i':
             {
-                auto val = va_arg(vargs, unsigned int);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<unsigned int>(argsStore, vargs, index);
                 break;
             }
             case 'q':
             {
-                auto val = va_arg(vargs, signed int);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<signed int>(argsStore, vargs, index);
                 break;
             }
             case 'l':
             {
-                auto val = va_arg(vargs, unsigned long long);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<unsigned long long>(argsStore, vargs, index);
                 break;
             }
             case 'w':
             {
-                auto val = va_arg(vargs, signed long long);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<signed long long>(argsStore, vargs, index);
                 break;
             }
             case 'f':
             {
-                auto val = va_arg(vargs, double);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<double>(argsStore, vargs, index);
                 break;
             }
             case 'p':
             {
-                auto val = va_arg(vargs, void*);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<void *>(argsStore, vargs, index);
                 break;
             }
             case 's':
@@ -414,13 +409,12 @@ boost::any LangMono::Call(const char *name, const char *argl, int buf, ...)
             }
             case 'b':
             {
-                auto val = va_arg(vargs, int);
-                vec[index] = (void *) &val;
+                vec[index] = MonoStoreAndGetPtr<int>(argsStore, vargs, index);
                 break;
             }
 
             default:
-                throw std::runtime_error("Mono call: Unknown argument identifier " + argl[index]);
+                throw std::runtime_error(std::string("Mono call: Unknown argument identifier ") + argl[index]);
         }
     }
 
@@ -452,6 +446,7 @@ boost::any LangMono::Call(const char *name, const char *argl, const std::vector<
     int n_args = args.size();
 
     std::vector<void *> vec(n_args);
+    TMonoArgsStore argsStore(n_args);
 
     for (int index = 0; index < n_args; index++)
     {
@@ -459,38 +454,32 @@ boost::any LangMono::Call(const char *name, const char *argl, const std::vector<
         {
             case 'i':
             {
-                auto val = boost::any_cast<unsigned int>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<unsigned int>(argsStore, args, index);
                 break;
             }
             case 'q':
             {
-                auto val = boost::any_cast<signed int>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<signed int>(argsStore, args, index);
                 break;
             }
             case 'l':
             {
-                auto val = boost::any_cast<unsigned long long>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<unsigned long long>(argsStore, args, index);
                 break;
             }
             case 'w':
             {
-                auto val = boost::any_cast<signed long long>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<signed long long>(argsStore, args, index);
                 break;
             }
             case 'f':
             {
-                auto val = boost::any_cast<double>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<double>(argsStore, args, index);
                 break;
             }
             case 'p':
             {
-                auto val = boost::any_cast<void *>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<void *>(argsStore, args, index);
                 break;
             }
             case 's':
@@ -501,13 +490,12 @@ boost::any LangMono::Call(const char *name, const char *argl, const std::vector<
             }
             case 'b':
             {
-                auto val = boost::any_cast<int>(args.at(index));
-                vec[index] = ((void *) &val);
+                vec[index] = MonoStoreAndGetPtr<int>(argsStore, args, index);
                 break;
             }
 
             default:
-                throw std::runtime_error("Mono call: Unknown argument identifier " + argl[index]);
+                throw std::runtime_error(std::string("Mono call: Unknown argument identifier ") + argl[index]);
         }
     }
 
