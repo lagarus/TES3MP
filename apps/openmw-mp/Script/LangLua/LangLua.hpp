@@ -45,12 +45,12 @@ public:
     virtual bool IsCallbackPresent(const char *name) override;
     virtual boost::any Call(const char *name, const char *argl, int buf, ...) override;
     virtual boost::any Call(const char *name, const char *argl, const std::vector<boost::any> &args) override;
-private:
-    static std::set<std::string> packageCPath;
-    static std::set<std::string> packagePath;
 
     static void Init();
     static void Free();
+private:
+    static std::set<std::string> packageCPath;
+    static std::set<std::string> packagePath;
 };
 
 
