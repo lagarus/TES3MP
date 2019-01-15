@@ -3,6 +3,8 @@
 
 #include "../Types.hpp"
 
+#include <Script/Platform.hpp>
+
 #define POSITIONAPI \
     {"GetPosX",             PositionFunctions::GetPosX},\
     {"GetPosY",             PositionFunctions::GetPosY},\
@@ -31,7 +33,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The X position.
     */
-    extern "C" double GetPosX(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPosX(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Y position of a player.
@@ -39,7 +41,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The Y position.
     */
-    extern "C" double GetPosY(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPosY(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Z position of a player.
@@ -47,7 +49,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The Z position.
     */
-    extern "C" double GetPosZ(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPosZ(unsigned short pid) noexcept;
 
     /**
     * \brief Get the X position of a player from before their latest cell change.
@@ -55,7 +57,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The X position.
     */
-    extern "C" double GetPreviousCellPosX(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPreviousCellPosX(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Y position of a player from before their latest cell change.
@@ -63,7 +65,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The Y position.
     */
-    extern "C" double GetPreviousCellPosY(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPreviousCellPosY(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Z position of a player from before their latest cell change.
@@ -71,7 +73,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The Z position.
     */
-    extern "C" double GetPreviousCellPosZ(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetPreviousCellPosZ(unsigned short pid) noexcept;
 
     /**
     * \brief Get the X rotation of a player.
@@ -79,7 +81,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The X rotation.
     */
-    extern "C" double GetRotX(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetRotX(unsigned short pid) noexcept;
 
     /**
     * \brief Get the Z rotation of a player.
@@ -87,7 +89,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return The Z rotation.
     */
-    extern "C" double GetRotZ(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION double CDECL GetRotZ(unsigned short pid) noexcept;
 
     /**
     * \brief Set the position of a player.
@@ -101,7 +103,7 @@ namespace PositionFunctions
     * \param z The Z position.
     * \return void
     */
-    extern "C" void SetPos(unsigned short pid, double x, double y, double z) noexcept;
+    EXPORT_APIFUNCTION void CDECL SetPos(unsigned short pid, double x, double y, double z) noexcept;
 
     /**
     * \brief Set the rotation of a player.
@@ -116,7 +118,7 @@ namespace PositionFunctions
     * \param z The Z position.
     * \return void
     */
-    extern "C" void SetRot(unsigned short pid, double x, double z) noexcept;
+    EXPORT_APIFUNCTION void CDECL SetRot(unsigned short pid, double x, double z) noexcept;
 
     /**
     * \brief Set the momentum of a player.
@@ -130,7 +132,7 @@ namespace PositionFunctions
     * \param z The Z momentum.
     * \return void
     */
-    extern "C" void SetMomentum(unsigned short pid, double x, double y, double z) noexcept;
+    EXPORT_APIFUNCTION void CDECL SetMomentum(unsigned short pid, double x, double y, double z) noexcept;
 
     /**
     * \brief Send a PlayerPosition packet about a player.
@@ -140,7 +142,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return void
     */
-    extern "C" void SendPos(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION void CDECL SendPos(unsigned short pid) noexcept;
 
     /**
     * \brief Send a PlayerMomentum packet about a player.
@@ -150,7 +152,7 @@ namespace PositionFunctions
     * \param pid The player ID.
     * \return void
     */
-    extern "C" void SendMomentum(unsigned short pid) noexcept;
+    EXPORT_APIFUNCTION void CDECL SendMomentum(unsigned short pid) noexcept;
 }
 
 #endif //OPENMW_POSITIONAPI_HPP
