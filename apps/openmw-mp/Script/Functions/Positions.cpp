@@ -1,5 +1,5 @@
 #include "Positions.h"
-#include <apps/openmw-mp/Script/ScriptFunctions.hpp>
+#include <apps/openmw-mp/Script/Callbacks.hpp>
 #include <components/openmw-mp/NetworkMessages.hpp>
 #include <apps/openmw-mp/Player.hpp>
 #include <apps/openmw-mp/Networking.hpp>
@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-double PositionFunctions::GetPosX(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPosX(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -15,7 +15,7 @@ double PositionFunctions::GetPosX(unsigned short pid) noexcept
     return player->position.pos[0];
 }
 
-extern "C" double PositionFunctions::GetPosY(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPosY(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -23,7 +23,7 @@ extern "C" double PositionFunctions::GetPosY(unsigned short pid) noexcept
     return player->position.pos[1];
 }
 
-extern "C" double PositionFunctions::GetPosZ(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPosZ(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -31,7 +31,7 @@ extern "C" double PositionFunctions::GetPosZ(unsigned short pid) noexcept
     return player->position.pos[2];
 }
 
-extern "C" double PositionFunctions::GetPreviousCellPosX(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPreviousCellPosX(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -39,7 +39,7 @@ extern "C" double PositionFunctions::GetPreviousCellPosX(unsigned short pid) noe
     return player->previousCellPosition.pos[0];
 }
 
-extern "C" double PositionFunctions::GetPreviousCellPosY(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPreviousCellPosY(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -47,7 +47,7 @@ extern "C" double PositionFunctions::GetPreviousCellPosY(unsigned short pid) noe
     return player->previousCellPosition.pos[1];
 }
 
-extern "C" double PositionFunctions::GetPreviousCellPosZ(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetPreviousCellPosZ(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -55,7 +55,7 @@ extern "C" double PositionFunctions::GetPreviousCellPosZ(unsigned short pid) noe
     return player->previousCellPosition.pos[2];
 }
 
-double PositionFunctions::GetRotX(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetRotX(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -63,7 +63,7 @@ double PositionFunctions::GetRotX(unsigned short pid) noexcept
     return player->position.rot[0];
 }
 
-extern "C" double PositionFunctions::GetRotZ(unsigned short pid) noexcept
+extern "C" double PositionFunctions::GetRotZ(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, 0.0f);
@@ -71,7 +71,7 @@ extern "C" double PositionFunctions::GetRotZ(unsigned short pid) noexcept
     return player->position.rot[2];
 }
 
-extern "C" void PositionFunctions::SetPos(unsigned short pid, double x, double y, double z) noexcept
+extern "C" void PositionFunctions::SetPos(PlayerId pid, double x, double y, double z) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player,);
@@ -81,7 +81,7 @@ extern "C" void PositionFunctions::SetPos(unsigned short pid, double x, double y
     player->position.pos[2] = z;
 }
 
-extern "C" void PositionFunctions::SetRot(unsigned short pid, double x, double z) noexcept
+extern "C" void PositionFunctions::SetRot(PlayerId pid, double x, double z) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, );
@@ -90,7 +90,7 @@ extern "C" void PositionFunctions::SetRot(unsigned short pid, double x, double z
     player->position.rot[2] = z;
 }
 
-extern "C" void PositionFunctions::SetMomentum(unsigned short pid, double x, double y, double z) noexcept
+extern "C" void PositionFunctions::SetMomentum(PlayerId pid, double x, double y, double z) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, );
@@ -100,7 +100,7 @@ extern "C" void PositionFunctions::SetMomentum(unsigned short pid, double x, dou
     player->momentum.pos[2] = z;
 }
 
-extern "C" void PositionFunctions::SendPos(unsigned short pid) noexcept
+extern "C" void PositionFunctions::SendPos(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, );
@@ -111,7 +111,7 @@ extern "C" void PositionFunctions::SendPos(unsigned short pid) noexcept
     packet->Send(false);
 }
 
-extern "C" void PositionFunctions::SendMomentum(unsigned short pid) noexcept
+extern "C" void PositionFunctions::SendMomentum(PlayerId pid) noexcept
 {
     Player *player;
     GET_PLAYER(pid, player, );

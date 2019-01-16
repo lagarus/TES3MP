@@ -1,28 +1,32 @@
 #include "TimerAPI.hpp"
 
 #include <chrono>
+#include <cstdarg>
+#include <cstring>
 
 #include <iostream>
 using namespace mwmp;
 using namespace std;
 
-Timer::Timer(ScriptFunc callback, long msec, const std::string& def, std::vector<boost::any> args) : ScriptFunction(callback, 'v', def), args(args)
+static int timerId = -1;
+
+Timer::Timer(ScriptFunc callback, long msec, const std::string& def, va_list args)
 {
+    this->def = strdup(def.c_str());
+    setRetType('v');
+    setFunctionPtr(callback);
+    setArguments(def, args);
     startTime = 0;
     targetMsec = msec;
     isEnded = true;
 }
 
-#if defined(ENABLE_LUA)
-Timer::Timer(lua_State *lua, ScriptFuncLua callback, long msec, const std::string& def, std::vector<boost::any> args): ScriptFunction(callback, lua, 'v', def), args(args)
+Timer::~Timer()
 {
-    startTime = 0;
-    targetMsec = msec;
-    isEnded = true;
+    free(def);
 }
-#endif
 
-void Timer::Tick()
+void Timer::Tick(int timerid)
 {
     if (isEnded)
         return;
@@ -33,7 +37,9 @@ void Timer::Tick()
     if (time - startTime >= targetMsec)
     {
         isEnded = true;
-        Call(args);
+        timerId = timerid;
+        call();
+        timerId = -1;
     }
 }
 
@@ -62,35 +68,16 @@ void Timer::Start()
     startTime = msec;
 }
 
+const char *Timer::GetDefinition()
+{
+    return def;
+}
+
 int TimerAPI::pointer = 0;
 std::unordered_map<int, Timer* > TimerAPI::timers;
 
-#if defined(ENABLE_LUA)
-int TimerAPI::CreateTimerLua(lua_State *lua, ScriptFuncLua callback, long msec, const std::string& def, std::vector<boost::any> args)
-{
-    int id = -1;
 
-    for (auto timer : timers)
-    {
-        if (timer.second != nullptr)
-            continue;
-        timer.second = new Timer(lua, callback, msec, def, args);
-        id = timer.first;
-    }
-
-    if (id == -1)
-    {
-        timers[pointer] = new Timer(lua, callback, msec, def, args);
-        id = pointer;
-        pointer++;
-    }
-
-    return id;
-}
-#endif
-
-
-int TimerAPI::CreateTimer(ScriptFunc callback, long msec, const std::string &def, const std::vector<boost::any> &args)
+int TimerAPI::CreateTimer(ScriptFunc callback, long msec, const std::string &def, va_list args)
 {
     int id = -1;
 
@@ -114,7 +101,6 @@ int TimerAPI::CreateTimer(ScriptFunc callback, long msec, const std::string &def
 
 void TimerAPI::FreeTimer(int timerid)
 {
-
     try
     {
         if (timers.at(timerid) != nullptr)
@@ -182,6 +168,25 @@ bool TimerAPI::IsTimerElapsed(int timerid)
     return ret;
 }
 
+int TimerAPI::GetTimerId()
+{
+    return timerId;
+}
+
+const char *TimerAPI::GetDefinition(int timerid)
+{
+    const char *ret = nullptr;
+    try
+    {
+        ret = timers.at(timerid)->GetDefinition();
+    }
+    catch(...)
+    {
+        std::cerr << "Timer " << timerid << " not found!" << endl;
+    }
+    return ret;
+}
+
 void TimerAPI::Terminate()
 {
     for (auto timer : timers)
@@ -197,6 +202,6 @@ void TimerAPI::Tick()
     for (auto timer : timers)
     {
         if (timer.second != nullptr)
-            timer.second->Tick();
+            timer.second->Tick(timer.first);
     }
 }

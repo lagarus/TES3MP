@@ -1,29 +1,7 @@
 #ifndef OPENMW_POSITIONAPI_HPP
 #define OPENMW_POSITIONAPI_HPP
 
-#include "../Types.hpp"
-
 #include "../api.h"
-
-#define POSITIONAPI \
-    {"GetPosX",             PositionFunctions::GetPosX},\
-    {"GetPosY",             PositionFunctions::GetPosY},\
-    {"GetPosZ",             PositionFunctions::GetPosZ},\
-    \
-    {"GetPreviousCellPosX", PositionFunctions::GetPreviousCellPosX},\
-    {"GetPreviousCellPosY", PositionFunctions::GetPreviousCellPosY},\
-    {"GetPreviousCellPosZ", PositionFunctions::GetPreviousCellPosZ},\
-    \
-    {"GetRotX",             PositionFunctions::GetRotX},\
-    {"GetRotZ",             PositionFunctions::GetRotZ},\
-    \
-    {"SetPos",              PositionFunctions::SetPos},\
-    {"SetRot",              PositionFunctions::SetRot},\
-    {"SetMomentum",         PositionFunctions::SetMomentum},\
-    \
-    {"SendPos",             PositionFunctions::SendPos},\
-    {"SendMomentum",        PositionFunctions::SendMomentum}
-
 
 NAMESPACE_BEGIN(PositionFunctions)
     /**
@@ -32,7 +10,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The X position.
     */
-    API_FUNCTION double CDECL GetPosX(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPosX(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the Y position of a player.
@@ -40,7 +18,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The Y position.
     */
-    API_FUNCTION double CDECL GetPosY(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPosY(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the Z position of a player.
@@ -48,7 +26,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The Z position.
     */
-    API_FUNCTION double CDECL GetPosZ(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPosZ(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the X position of a player from before their latest cell change.
@@ -56,7 +34,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The X position.
     */
-    API_FUNCTION double CDECL GetPreviousCellPosX(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPreviousCellPosX(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the Y position of a player from before their latest cell change.
@@ -64,7 +42,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The Y position.
     */
-    API_FUNCTION double CDECL GetPreviousCellPosY(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPreviousCellPosY(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the Z position of a player from before their latest cell change.
@@ -72,7 +50,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The Z position.
     */
-    API_FUNCTION double CDECL GetPreviousCellPosZ(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetPreviousCellPosZ(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the X rotation of a player.
@@ -80,7 +58,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The X rotation.
     */
-    API_FUNCTION double CDECL GetRotX(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetRotX(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Get the Z rotation of a player.
@@ -88,7 +66,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return The Z rotation.
     */
-    API_FUNCTION double CDECL GetRotZ(unsigned short pid) noexcept;
+    API_FUNCTION double CDECL GetRotZ(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Set the position of a player.
@@ -102,7 +80,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param z The Z position.
     * \return void
     */
-    API_FUNCTION void CDECL SetPos(unsigned short pid, double x, double y, double z) noexcept;
+    API_FUNCTION void CDECL SetPos(PlayerId pid, double x, double y, double z) NOEXCEPT;
 
     /**
     * \brief Set the rotation of a player.
@@ -117,7 +95,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param z The Z position.
     * \return void
     */
-    API_FUNCTION void CDECL SetRot(unsigned short pid, double x, double z) noexcept;
+    API_FUNCTION void CDECL SetRot(PlayerId pid, double x, double z) NOEXCEPT;
 
     /**
     * \brief Set the momentum of a player.
@@ -131,7 +109,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param z The Z momentum.
     * \return void
     */
-    API_FUNCTION void CDECL SetMomentum(unsigned short pid, double x, double y, double z) noexcept;
+    API_FUNCTION void CDECL SetMomentum(PlayerId pid, double x, double y, double z) NOEXCEPT;
 
     /**
     * \brief Send a PlayerPosition packet about a player.
@@ -141,7 +119,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return void
     */
-    API_FUNCTION void CDECL SendPos(unsigned short pid) noexcept;
+    API_FUNCTION void CDECL SendPos(PlayerId pid) NOEXCEPT;
 
     /**
     * \brief Send a PlayerMomentum packet about a player.
@@ -151,7 +129,7 @@ NAMESPACE_BEGIN(PositionFunctions)
     * \param pid The player ID.
     * \return void
     */
-    API_FUNCTION void CDECL SendMomentum(unsigned short pid) noexcept;
+    API_FUNCTION void CDECL SendMomentum(PlayerId pid) NOEXCEPT;
 NAMESPACE_END()
 
 #endif //OPENMW_POSITIONAPI_HPP
