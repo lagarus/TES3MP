@@ -245,13 +245,8 @@ int main(int argc, char *argv[])
 
     try
     {
-<<<<<<< 0.7.0
-        for (auto plugin : plugins)
-            Script::LoadScript(plugin.c_str(), pluginHome.c_str());
-=======
         for (const auto &plugin : plugins)
-            Plugin::LoadPlugin(Utils::convertPath(plugin_home + "/scripts/" + plugin));
->>>>>>> [Server] Rework Plugin API, move Lua system to external library
+            Plugin::LoadPlugin(Utils::convertPath(pluginHome + "/scripts/" + plugin));
 
         switch (peer->Startup((unsigned) players, &sd, 1))
         {

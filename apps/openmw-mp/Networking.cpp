@@ -77,7 +77,7 @@ Networking::~Networking()
 
 void Networking::setServerPassword(const std::string &passw) noexcept
 {
-    serverPassword = password.empty() ? TES3MP_DEFAULT_PASSW : password;
+    serverPassword = passw.empty() ? TES3MP_DEFAULT_PASSW : passw;
 }
 
 bool Networking::isPassworded() const
