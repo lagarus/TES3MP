@@ -17,9 +17,9 @@ namespace mwmp
         virtual ~BasePacket() = default;
 
         virtual void Packet(RakNet::BitStream *bs, bool send);
-        virtual uint32_t Send(bool toOtherPlayers = true);
-        virtual uint32_t Send(RakNet::AddressOrGUID destination);
-        virtual void Read();
+        uint32_t Send(bool toOtherPlayers = true);
+        uint32_t Send(RakNet::AddressOrGUID destination);
+        void Read();
 
         void setGUID(RakNet::RakNetGUID guid);
         RakNet::RakNetGUID getGUID();
@@ -27,7 +27,7 @@ namespace mwmp
         void SetReadStream(RakNet::BitStream *bitStream);
         void SetSendStream(RakNet::BitStream *bitStream);
         void SetStreams(RakNet::BitStream *inStream, RakNet::BitStream *outStream);
-        virtual uint32_t RequestData(RakNet::RakNetGUID guid);
+        uint32_t RequestData(RakNet::RakNetGUID guid);
 
         static inline uint32_t headerSize()
         {

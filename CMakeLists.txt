@@ -81,7 +81,7 @@ endif(EXISTS ${PROJECT_SOURCE_DIR}/.git)
 # Macros
 include(OpenMWMacros)
 
-include(PVS-Studio.cmake)
+include(PVS-Studio)
 
 # doxygen main page
 
