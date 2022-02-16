@@ -381,8 +381,16 @@ namespace MWGui
             Instead of activating a list item here, send an ObjectDialogueChoice packet to the server
             and let it decide whether the list item gets activated
         */
-        sendDialogueChoicePacket(topic);
-        return;
+        
+        /*
+            Ashes Land --
+            remove net component(be like 0.7)
+        */
+        
+        //sendDialogueChoicePacket(topic);
+        //return;
+
+
         /*
             End of tes3mp change (major)
         */
@@ -465,7 +473,10 @@ namespace MWGui
     {
         if (dialogueChoiceType == mwmp::DialogueChoiceType::TOPIC)
         {
-            
+            // If we're using a translated version of Morrowind, translate this topic from English into our language
+            if (MWBase::Environment::get().getWindowManager()->getTranslationDataStorage().hasTranslation())
+                topic = MWBase::Environment::get().getWindowManager()->getTranslationDataStorage().getLocalizedTopicId(topic);
+
             onTopicActivated(topic);
         }
         else if (dialogueChoiceType == mwmp::DialogueChoiceType::PERSUASION)
@@ -567,17 +578,24 @@ namespace MWGui
 
                 Instead of restocking the NPC's gold pool or last restock time here, send a packet about them to the server
             */
+
+            
             /*
+            Ashes Land --
+            remove net component(be like 0.7)
+            */
+            
             sellerStats.setGoldPool(mPtr.getClass().getBaseGold(mPtr));
 
             sellerStats.setLastRestockTime(MWBase::Environment::get().getWorld()->getTimeStamp());
-            */
+            /*
             mwmp::ObjectList* objectList = mwmp::Main::get().getNetworking()->getObjectList();
             objectList->reset();
             objectList->packetOrigin = mwmp::CLIENT_GAMEPLAY;
             objectList->addObjectMiscellaneous(mPtr, mPtr.getClass().getBaseGold(mPtr), MWBase::Environment::get().getWorld()->getTimeStamp().getHour(),
                 MWBase::Environment::get().getWorld()->getTimeStamp().getDay());
             objectList->sendObjectMiscellaneous();
+            */
             /*
                 End of tes3mp change (major)
             */
@@ -670,8 +688,15 @@ namespace MWGui
                 Instead of running DialogueWindow::onSelectListItem() when clicking a highlighted topic, run
                 onSendDialoguePacket() so the server can approve or deny a dialogue choice
             */
-            //t->eventTopicActivated += MyGUI::newDelegate(this, &DialogueWindow::onTopicActivated);
-            t->eventTopicActivated += MyGUI::newDelegate(this, &DialogueWindow::sendDialogueChoicePacket);
+
+            /*
+            Ashes Land --
+            remove net component(be like 0.7)
+            */
+
+            t->eventTopicActivated += MyGUI::newDelegate(this, &DialogueWindow::onTopicActivated);
+
+            //t->eventTopicActivated += MyGUI::newDelegate(this, &DialogueWindow::sendDialogueChoicePacket);
             /*
                 End of tes3mp change (major)
             */
@@ -679,6 +704,7 @@ namespace MWGui
             mTopicLinks[topicId] = t;
 
             mKeywordSearch.seed(topicId, intptr_t(t));
+ 
         }
         mTopicsList->adjustSize();
 
